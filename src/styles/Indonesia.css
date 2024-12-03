@@ -1,0 +1,48 @@
+/* Indonesia.css */
+
+.news-container {
+  padding: 20px;
+  margin: 20px;
+}
+
+.loading, .error {
+  font-size: 1.5rem;
+  color: #ff0000;
+  text-align: center;
+}
+
+.news-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.news-card {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.news-card h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.news-card p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.news-card a {
+  display: inline-block;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.news-card a:hover {
+  background-color: #0056b3;
+}

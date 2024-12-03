@@ -1,0 +1,53 @@
+.news-container {
+  padding: 20px;
+}
+
+.news-card {
+  border: 1px solid #ddd;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.read-more {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.save-article {
+  position: absolute;
+  bottom: 10px; /* Position at the bottom */
+  right: 10px;  /* Position at the right */
+  background-color: transparent; /* No background */
+  border: none;  /* Remove border */
+  cursor: pointer;
+}
+
+.save-article svg {
+  font-size: 20px;
+  border-radius: 50%; /* Round shape */
+  padding: 5px;  /* Padding around icon */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.save-article svg {
+  color: white; /* Default icon color */
+}
+
+.save-article svg:hover {
+  color: #FF9800; /* Hover effect */
+}
+
+.save-article:disabled svg {
+  color: gray;  /* Color when the article is already saved */
+}
+

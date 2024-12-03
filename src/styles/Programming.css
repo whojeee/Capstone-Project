@@ -1,0 +1,38 @@
+/* File: src/styles/Programming.css */
+.programming-news-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .programming-news-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .programming-news-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .programming-news-card h2 {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .programming-news-card p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .programming-news-card a {
+    color: #0073e6;
+    text-decoration: none;
+  }
+  
+  .programming-news-card a:hover {
+    text-decoration: underline;
+  }
+  
