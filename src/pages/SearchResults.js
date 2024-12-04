@@ -1,45 +1,78 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { FaBookmark } from 'react-icons/fa';
+import '../styles/SearchResults.css'
 
 const SearchResults = () => {
+  const { query } = useParams();  // Mengambil query pencarian dari URL
+  const navigate = useNavigate();  // Untuk navigasi ke rute baru
   const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [bookmarkedArticles, setBookmarkedArticles] = useState([]);
+  const [error, setError] = useState('');
+  const [searchTerm, setSearchTerm] = useState(query || ''); // Set search term jika ada query di URL
 
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const searchTerm = queryParams.get('query'); // Get search term from URL
-
+  // Melakukan pencarian saat query berubah
   useEffect(() => {
-    if (searchTerm) {
-      setLoading(true);
-      axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}&api-key=WGtW2ZqJNTNKKgWkoGbAMmcwLslom8f8`)
+    if (query) {
+      axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&api-key=WGtW2ZqJNTNKKgWkoGbAMmcwLslom8f8`)
         .then(response => {
           setNews(response.data.response.docs);
-          setLoading(false);
         })
-        .catch(error => {
-          setError('Error fetching news!');
-          setLoading(false);
+        .catch(() => {
+          setError('Failed to load search results');
         });
     }
-  }, [searchTerm]);
+  }, [query]); // Menjalankan pencarian setiap kali query berubah
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  // Fungsi untuk mengubah rute pencarian ketika ada input
+  const handleSearch = (e) => {
+    e.preventDefault(); // Mencegah form untuk submit dan mereload halaman
+    if (searchTerm) {
+      navigate(`/search/${searchTerm}`);
+    }
+  };
+
+  const handleBookmarkArticle = (articleId) => {
+    if (!bookmarkedArticles.includes(articleId)) {
+      setBookmarkedArticles([...bookmarkedArticles, articleId]);  // Add article to bookmarked list
+    }
+  };
 
   return (
-    <div className="news-container">
-      <h1>Search Results for: {searchTerm}</h1>
-      <div className="news-cards">
-        {news.map((article) => (
-          <div key={article._id} className="news-card">
-            <h2>{article.headline.main}</h2>
-            <p>{article.abstract}</p>
-            <a href={article.web_url} target="_blank" rel="noopener noreferrer">Read More</a>
-          </div>
-        ))}
+    <div>
+      <div className="search-bar">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)} // Mengubah search term
+          placeholder="Search news..."
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
+
+      {/* Tampilkan hasil pencarian */}
+      <div className="search-results">
+        {error && <div>{error}</div>}
+        {news.length > 0 ? (
+          news.map((article) => (
+            <div key={article._id} className='news-card'>
+              <h2>{article.headline.main}</h2>
+              <p>{article.abstract}</p>
+              <div className='card-buttons'>
+              <a href={article.web_url} target="_blank" rel="noopener noreferrer" className='read-more'>Read More</a>
+            {/* Bookmark Icon */}
+            <FaBookmark
+                className="bookmark-icon"
+                onClick={() => handleBookmarkArticle(article._id)}
+                style={{ color: bookmarkedArticles.includes(article._id) ? '#ff7f50' : '#333' }}
+              />
+            </div>
+            </div>
+          ))
+        ) : (
+          <p>No results found</p>
+        )}
       </div>
     </div>
   );

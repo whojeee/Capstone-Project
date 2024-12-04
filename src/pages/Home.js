@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import '../styles/Home.css'
 import { FaBookmark } from 'react-icons/fa'; // Using FaBookmark icon
 import { useNavigate } from 'react-router-dom'; // for navigation
 
@@ -27,22 +28,10 @@ const Home = () => {
   }, []);
 
   const handleSearch = () => {
-    if (searchTerm.trim() === '') return;
-    setLoading(true);
-
-    // Redirect to the /search route
-    navigate(`/search?query=${searchTerm}`);
-
-    // Fetching results when user searches
-    axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}&api-key=WGtW2ZqJNTNKKgWkoGbAMmcwLslom8f8`)
-      .then(response => {
-        setNews(response.data.response.docs);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError('Error fetching news!');
-        setLoading(false);
-      });
+    if (searchTerm) {
+      console.log('Navigating to: ', `/search/${searchTerm}`);
+      navigate(`/search/${searchTerm}`);
+    }
   };
 
   const truncateText = (text, maxLength) => {
@@ -67,6 +56,7 @@ const Home = () => {
   if (error) return <div>{error}</div>;
 
   return (
+    <div className='home-page'>
     <div className="news-container">
       <div className="search-bar">
         <input
@@ -110,7 +100,7 @@ const Home = () => {
               <h2>{article.title}</h2>
               <p>{truncateText(article.abstract, 150)}</p>
               <div className="card-buttons">
-                <a href={article.url} target="_blank" rel="noopener noreferrer" className="read-more">
+                <a href={article.url} target="_blank" rel="noopener noreferrer" className="read-more-home">
                   Read More
                 </a>
                 <button
@@ -130,6 +120,7 @@ const Home = () => {
           ))
         )}
       </div>
+    </div>
     </div>
   );
 };

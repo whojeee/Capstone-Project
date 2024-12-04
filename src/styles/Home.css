@@ -1,53 +1,77 @@
-.news-container {
+/* Gaya spesifik untuk Home */
+.home-page .news-container {
   padding: 20px;
 }
 
-.news-card {
+.home-page .news-card {
   border: 1px solid #ddd;
   margin: 10px;
   padding: 15px;
   border-radius: 5px;
 }
 
-.card-buttons {
+.home-page .card-buttons {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
 }
 
-.read-more {
-  background-color: #4CAF50;
+.home-page .read-more-home {
+  background-color: #333;
   color: white;
   padding: 10px 15px;
   text-decoration: none;
   border-radius: 5px;
 }
 
-.save-article {
-  position: absolute;
-  bottom: 10px; /* Position at the bottom */
-  right: 10px;  /* Position at the right */
-  background-color: transparent; /* No background */
-  border: none;  /* Remove border */
+.home-page .save-article {
+  background-color: transparent;
+  border: none;
   cursor: pointer;
+  padding: 5px;
+  transition: transform 0.3s;
 }
 
-.save-article svg {
-  font-size: 20px;
-  border-radius: 50%; /* Round shape */
-  padding: 5px;  /* Padding around icon */
-  transition: color 0.3s ease; /* Smooth color transition */
+.home-page .save-article:hover {
+  transform: scale(1.2);
 }
 
-.save-article svg {
-  color: white; /* Default icon color */
+/* Search Bar */
+.search-bar {
+  position: relative; /* Keeps it relative to the page */
+  width: 100%; /* Makes the search bar span across the full width of the page */
+  padding: 10px 0; /* Vertical padding */
+  box-sizing: border-box; /* Ensures padding doesn't affect the width */
 }
 
-.save-article svg:hover {
-  color: #FF9800; /* Hover effect */
+.search-bar input {
+  width: 100%; /* The input takes up the full width of the search bar */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box; /* Prevents padding from affecting width */
 }
 
-.save-article:disabled svg {
-  color: gray;  /* Color when the article is already saved */
+.search-bar button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 10px;
 }
+
+.search-bar button:hover {
+  background-color: #444;
+}
+
+/* Ensure there's no extra margin/padding around the search bar */
+.home-page .news-container {
+  margin-top: 0px; /* Adjust for search bar and navbar */
+}
+
+
 

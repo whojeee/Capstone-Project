@@ -1,0 +1,123 @@
+/* Footer styles */
+footer {
+  clear: both;  /* Make sure content above clears floated elements */
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Optional: Ensures the footer stays at the bottom of the page */
+body, html {
+  height: 100%; /* Ensure the body and html take up full height */
+  margin: 0; /* Remove default margin */
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto; /* Push footer to the bottom of the page */
+}
+
+
+/* Styling untuk search bar */
+.search-bar {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Pastikan search bar tetap di atas konten */
+  position: relative;
+}
+
+/* Styling untuk input search */
+.search-bar input {
+  width: 75%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Styling untuk tombol search */
+.search-bar button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+  background-color: green;
+}
+
+/* Styling untuk hasil pencarian */
+.search-results {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Memastikan kartu berita memiliki tata letak yang benar */
+.search-results .news-card {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column; /* Agar elemen lainnya ditumpuk vertikal */
+min-height: 200px;}
+
+/* Tombol Read More lebih kecil */
+.read-more {
+  font-size: 12px; /* Ukuran font lebih kecil */
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  background-color: #333;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  width: auto; /* Sesuai dengan panjang teks */
+  margin-right: 10px; /* Jarak antar tombol dan ikon */
+  display: inline-block;
+}
+
+.read-more:hover {
+  background-color: #555;
+}
+
+/* Tombol dan ikon bookmark sejajar */
+.card-buttons {
+  display: flex;
+  justify-content: space-between; /* Tombol Read More di kiri, ikon bookmark di kanan */
+  align-items: center;
+  width: 100%; /* Memastikan ruang sepenuhnya digunakan */
+  margin-top: 10px; /* Jarak antara konten dan tombol */
+}
+
+/* Ikon bookmark di kanan bawah */
+.bookmark-icon {
+  font-size: 20px; /* Ukuran ikon */
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.bookmark-icon:hover {
+  color: #ff7f50;
+}
+
