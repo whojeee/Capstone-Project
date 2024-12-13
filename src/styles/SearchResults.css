@@ -19,37 +19,38 @@ footer {
 }
 
 .search-bar {
-  margin-top: 30px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  padding: 10px 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 10;
+  align-items: center; /* Pusatkan elemen secara vertikal */
+  margin-left: auto; /* Taruh search bar di sebelah kanan */
+  margin-right: 20px; /* Jarak dengan tepi navbar */
+  margin-top: 10px; /* Tambahkan jarak ke atas */
+  max-width: 400px; /* Batas lebar maksimal */
+  width: 100%; /* Buat fleksibel */
 }
 
+
 .search-bar input {
-  width: 75%;
-  padding: 10px;
+  flex-grow: 1; /* Buat input mengisi ruang yang tersedia */
+  padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 5px 0 0 5px; /* Round corner kiri */
+  font-size: 14px;
 }
 
 .search-bar button {
-  padding: 10px 20px;
-  background-color: #333;
+  padding: 8px 16px;
+  background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0; /* Round corner kanan */
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 14px;
 }
 
 .search-bar button:hover {
-  background-color: green;
+  background-color: #0056b3;
 }
+
 
 /* Loading & Error */
 .loading, .error {
@@ -59,10 +60,10 @@ footer {
 }
 
 .search-results {
-  margin-top: 20px;
+  margin: 50px; /* Jarak dari semua sisi */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  gap: 20px; /* Jarak antar kartu */
   margin-bottom: 30px;
 }
 

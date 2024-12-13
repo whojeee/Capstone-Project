@@ -55,7 +55,7 @@ const Programming = () => {
 
   return (
     <div className="news-container">
-      <h1>Berita Programming</h1>
+      <h1>Programming News</h1>
       <div className="news-cards">
         {programmingNews.map((article) => {
           const imageUrl = article.multimedia && article.multimedia.length > 0

@@ -55,7 +55,7 @@ const Indonesia = () => {
 
   return (
     <div className="news-container">
-      <h1>Berita Indonesia</h1>
+      <h1>Indonesia News</h1>
       <div className="news-cards">
         {indonesiaNews.map((article) => {
           const imageUrl = article.multimedia && article.multimedia.length > 0

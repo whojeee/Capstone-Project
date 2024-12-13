@@ -14,7 +14,7 @@ const Home = () => {
     axios
       .get('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=WGtW2ZqJNTNKKgWkoGbAMmcwLslom8f8')
       .then((response) => {
-        console.log(response.data.results); // Debug respons API
+        console.log(response.data.results); 
         setTopStories(response.data.results);
       })
       .catch(() => console.error('Failed to load top stories'));
@@ -43,7 +43,7 @@ const Home = () => {
         headline: { main: article.title || article.headline?.main || 'No headline' },
         abstract: article.abstract || 'No abstract available',
         web_url: article.url || article.web_url,
-        image_url: article.multimedia?.[0]?.url || '', // Use image if available
+        image_url: article.multimedia?.[0]?.url || '', 
       };
 
       const updatedArticles = [...saved, standardizedArticle];
@@ -62,17 +62,19 @@ const Home = () => {
   return (
     <div className="home-page">
       <div className="news-container">
-        <div className="search-bar">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search news..."
-          />
-          <button onClick={handleSearch}>Search</button>
-        </div>
+      <div className="top-header">
+  <h1 className="page-title">Top Stories</h1>
+  <div className="search-bar">
+    <input
+      type="text"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      placeholder="Search news..."
+    />
+    <button onClick={handleSearch}>Search</button>
+  </div>
+</div>
 
-        <h1>Top Stories</h1>
         <div className="news-cards">
           {topStories.map((article) => {
             const imageUrl = article.multimedia?.[0]?.url

@@ -71,15 +71,19 @@ const SearchResults = () => {
 
   return (
     <div>
-      <div className="search-bar">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search news..."
-        />
-        <button onClick={handleSearch}>Search</button>
-      </div>
+      <div className="top-header">
+  <h1 className="page-title">Search Results</h1>
+  <div className="search-bar">
+    <input
+      type="text"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      placeholder="Search news..."
+    />
+    <button onClick={handleSearch}>Search</button>
+  </div>
+</div>
+
 
       <div className="search-results">
         {loading && <div>Loading...</div>}
