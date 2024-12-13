@@ -7,7 +7,7 @@ import { FaBookmark } from 'react-icons/fa';
 
 const Indonesia = () => {
   const dispatch = useDispatch();
-  const { indonesiaNews, loading, error } = useSelector(state => state.news);
+  const { indonesiaNews, loading, error } = useSelector((state) => state.news);
   const [savedArticles, setSavedArticles] = useState([]);
 
   useEffect(() => {
@@ -19,8 +19,10 @@ const Indonesia = () => {
     if (indonesiaNews.length === 0) {
       dispatch(setLoading(true));
       axios
-        .get('https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Indonesia&api-key=WGtW2ZqJNTNKKgWkoGbAMmcwLslom8f8')
-        .then(response => {
+        .get(
+          'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Indonesia&api-key=WGtW2ZqJNTNKKgWkoGbAMmcwLslom8f8'
+        )
+        .then((response) => {
           dispatch(setIndonesiaNews(response.data.response.docs));
           dispatch(setLoading(false));
         })
@@ -32,7 +34,9 @@ const Indonesia = () => {
   }, [dispatch, indonesiaNews.length]);
 
   const handleSave = (article) => {
-    const isAlreadySaved = savedArticles.some((savedArticle) => savedArticle._id === article._id);
+    const isAlreadySaved = savedArticles.some(
+      (savedArticle) => savedArticle._id === article._id
+    );
 
     if (!isAlreadySaved) {
       const updatedArticles = [...savedArticles, article];
@@ -59,32 +63,45 @@ const Indonesia = () => {
       <div className="news-cards">
         {indonesiaNews.map((article) => {
           const imageUrl = article.multimedia && article.multimedia.length > 0
-            ? `https://www.nytimes.com/${article.multimedia[0].url}`
-            : process.env.PUBLIC_URL + '/images/placeholder.jpeg';
+          ? `https://www.nytimes.com/${article.multimedia[0].url}`
+          : '/images/placeholder.jpeg'; // Path dari folder public
+        
+        
 
           return (
             <div key={article._id} className="news-card">
               <img
-                src={imageUrl}
-                alt={article.headline.main || 'Placeholder Image'}
-                className="news-image"
-              />
+  src={imageUrl}
+  alt={article.headline.main || 'Placeholder Image'}
+  className="news-image"
+  onError={(e) => {
+    e.target.src = '/images/placeholder.jpeg'; // Ganti gambar dengan placeholder
+  }}
+/>
+
               <h2>{article.headline.main}</h2>
               <p>{article.abstract}</p>
               <div className="card-buttons">
-  <a href={article.web_url} target="_blank" rel="noopener noreferrer" className="read-more">
-    Read More
-  </a>
-  <button className="bookmark-button" onClick={() => handleSave(article)}>
-    <FaBookmark
-      style={{
-        color: isSaved(article) ? 'green' : 'black',
-        fontSize: '20px',
-      }}
-    />
-  </button>
-</div>
-
+                <a
+                  href={article.web_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="read-more"
+                >
+                  Read More
+                </a>
+                <button
+                  className="bookmark-button"
+                  onClick={() => handleSave(article)}
+                >
+                  <FaBookmark
+                    style={{
+                      color: isSaved(article) ? 'green' : 'black',
+                      fontSize: '20px',
+                    }}
+                  />
+                </button>
+              </div>
             </div>
           );
         })}

@@ -62,7 +62,7 @@ const Home = () => {
   return (
     <div className="home-page">
       <div className="news-container">
-      <div className="top-header">
+        <div className="top-header">
   <h1 className="page-title">Top Stories</h1>
   <div className="search-bar">
     <input
