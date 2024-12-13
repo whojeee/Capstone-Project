@@ -7,7 +7,7 @@ import { FaBookmark } from 'react-icons/fa';
 
 const Programming = () => {
   const dispatch = useDispatch();
-  const { programmingNews, loading, error } = useSelector(state => state.news);
+  const { programmingNews, loading, error } = useSelector((state) => state.news);
   const [savedArticles, setSavedArticles] = useState([]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Programming = () => {
       dispatch(setLoading(true));
       axios
         .get('https://api.nytimes.com/svc/search/v2/articlesearch.json?q=programming&api-key=WGtW2ZqJNTNKKgWkoGbAMmcwLslom8f8')
-        .then(response => {
+        .then((response) => {
           console.log(response.data.response.docs); // Debug data API
           dispatch(setProgrammingNews(response.data.response.docs));
           dispatch(setLoading(false));
@@ -34,8 +34,15 @@ const Programming = () => {
 
   const handleSave = (article) => {
     const isAlreadySaved = savedArticles.some((savedArticle) => savedArticle._id === article._id);
+
     if (!isAlreadySaved) {
       const updatedArticles = [...savedArticles, article];
+      localStorage.setItem('bookmarkedArticles', JSON.stringify(updatedArticles));
+      setSavedArticles(updatedArticles);
+    } else {
+      const updatedArticles = savedArticles.filter(
+        (savedArticle) => savedArticle._id !== article._id
+      );
       localStorage.setItem('bookmarkedArticles', JSON.stringify(updatedArticles));
       setSavedArticles(updatedArticles);
     }
@@ -82,8 +89,11 @@ const Programming = () => {
                 <button className="save-article" onClick={() => handleSave(article)}>
                   <FaBookmark
                     style={{
-                      color: isSaved(article) ? "green" : "black",
-                      fontSize: "20px",
+                      color: isSaved(article) ? 'green' : 'black', // Icon color
+                      fill: isSaved(article) ? 'green' : 'none', // Fill when saved
+                      stroke: 'black', // Outline color
+                      strokeWidth: '35px', // Thick border
+                      fontSize: '20px', // Icon size
                     }}
                   />
                 </button>

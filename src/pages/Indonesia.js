@@ -42,6 +42,12 @@ const Indonesia = () => {
       const updatedArticles = [...savedArticles, article];
       localStorage.setItem('bookmarkedArticles', JSON.stringify(updatedArticles));
       setSavedArticles(updatedArticles);
+    } else {
+      const updatedArticles = savedArticles.filter(
+        (savedArticle) => savedArticle._id !== article._id
+      );
+      localStorage.setItem('bookmarkedArticles', JSON.stringify(updatedArticles));
+      setSavedArticles(updatedArticles);
     }
   };
 
@@ -62,22 +68,21 @@ const Indonesia = () => {
       <h1>Indonesia News</h1>
       <div className="news-cards">
         {indonesiaNews.map((article) => {
-          const imageUrl = article.multimedia && article.multimedia.length > 0
-          ? `https://www.nytimes.com/${article.multimedia[0].url}`
-          : '/images/placeholder.jpeg'; // Path dari folder public
-        
-        
+          const imageUrl =
+            article.multimedia && article.multimedia.length > 0
+              ? `https://www.nytimes.com/${article.multimedia[0].url}`
+              : '/images/placeholder.jpeg';
 
           return (
             <div key={article._id} className="news-card">
               <img
-  src={imageUrl}
-  alt={article.headline.main || 'Placeholder Image'}
-  className="news-image"
-  onError={(e) => {
-    e.target.src = '/images/placeholder.jpeg'; // Ganti gambar dengan placeholder
-  }}
-/>
+                src={imageUrl}
+                alt={article.headline.main || 'Placeholder Image'}
+                className="news-image"
+                onError={(e) => {
+                  e.target.src = '/images/placeholder.jpeg';
+                }}
+              />
 
               <h2>{article.headline.main}</h2>
               <p>{article.abstract}</p>
@@ -97,6 +102,9 @@ const Indonesia = () => {
                   <FaBookmark
                     style={{
                       color: isSaved(article) ? 'green' : 'black',
+                      fill: isSaved(article) ? 'green' : 'none',
+                      stroke: 'black',
+                      strokeWidth: '35px',
                       fontSize: '20px',
                     }}
                   />

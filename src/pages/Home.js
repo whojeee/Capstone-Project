@@ -14,7 +14,6 @@ const Home = () => {
     axios
       .get('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=WGtW2ZqJNTNKKgWkoGbAMmcwLslom8f8')
       .then((response) => {
-        console.log(response.data.results); 
         setTopStories(response.data.results);
       })
       .catch(() => console.error('Failed to load top stories'));
@@ -33,8 +32,8 @@ const Home = () => {
 
   const handleSave = (article) => {
     const saved = JSON.parse(localStorage.getItem('bookmarkedArticles')) || [];
-    const isAlreadySaved = saved.some((savedArticle) =>
-      savedArticle._id === (article.url || article._id)
+    const isAlreadySaved = saved.some(
+      (savedArticle) => savedArticle._id === (article.url || article._id)
     );
 
     if (!isAlreadySaved) {
@@ -43,10 +42,16 @@ const Home = () => {
         headline: { main: article.title || article.headline?.main || 'No headline' },
         abstract: article.abstract || 'No abstract available',
         web_url: article.url || article.web_url,
-        image_url: article.multimedia?.[0]?.url || '', 
+        image_url: article.multimedia?.[0]?.url || '',
       };
 
       const updatedArticles = [...saved, standardizedArticle];
+      localStorage.setItem('bookmarkedArticles', JSON.stringify(updatedArticles));
+      setSavedArticles(updatedArticles);
+    } else {
+      const updatedArticles = saved.filter(
+        (savedArticle) => savedArticle._id !== (article.url || article._id)
+      );
       localStorage.setItem('bookmarkedArticles', JSON.stringify(updatedArticles));
       setSavedArticles(updatedArticles);
     }
@@ -54,8 +59,8 @@ const Home = () => {
 
   const isSaved = (article) => {
     const saved = JSON.parse(localStorage.getItem('bookmarkedArticles')) || [];
-    return saved.some((savedArticle) =>
-      savedArticle._id === (article.url || article._id)
+    return saved.some(
+      (savedArticle) => savedArticle._id === (article.url || article._id)
     );
   };
 
@@ -63,17 +68,17 @@ const Home = () => {
     <div className="home-page">
       <div className="news-container">
         <div className="top-header">
-  <h1 className="page-title">Top Stories</h1>
-  <div className="search-bar">
-    <input
-      type="text"
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-      placeholder="Search news..."
-    />
-    <button onClick={handleSearch}>Search</button>
-  </div>
-</div>
+          <h1 className="page-title">Top Stories</h1>
+          <div className="search-bar">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search news..."
+            />
+            <button onClick={handleSearch}>Search</button>
+          </div>
+        </div>
 
         <div className="news-cards">
           {topStories.map((article) => {
@@ -110,6 +115,9 @@ const Home = () => {
                     <FaBookmark
                       style={{
                         color: isSaved(article) ? 'green' : 'black',
+                        fill: isSaved(article) ? 'green' : 'none', // Outline by default, filled when saved
+                        stroke: 'black', // Ensures the outline is visible
+                        strokeWidth: '35px', // Optional for thicker outline
                         fontSize: '20px',
                       }}
                     />

@@ -29,7 +29,7 @@ const Saved = () => {
       <div className="news-cards">
         {savedArticles.length > 0 ? (
           savedArticles.map((article) => {
-            const imageUrl = 
+            const imageUrl =
               article.multimedia && article.multimedia.length > 0 && article.multimedia[0].url
                 ? `https://static01.nyt.com/${article.multimedia[0].url}` // URL dari multimedia
                 : article.image_url && article.image_url.trim() !== ""
@@ -62,7 +62,15 @@ const Saved = () => {
                     className="save-article"
                     onClick={() => handleRemoveBookmark(article._id)}
                   >
-                    <FaBookmark style={{ color: 'red', fontSize: '20px' }} />
+                    <FaBookmark
+                      style={{
+                        color: 'white',
+                        fill: 'red', // Default outlined style
+                        stroke: 'white', // Dark red outline
+                        strokeWidth: '35px', // Thicker outline
+                        fontSize: '20px',
+                      }}
+                    />
                   </button>
                 </div>
               </div>

@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif; /* Modern font */
 }
 
 .container {
@@ -44,7 +44,7 @@
   right: 20px;
 }
 
-/* Default Nav Links */
+/* Nav Links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -57,12 +57,18 @@
   font-size: 18px;
   padding: 10px 20px;
   border-radius: 5px;
-  transition: 0.3s;
+  transition: font-weight 0.3s ease-in-out;
 }
 
 .nav-links a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: bold; /* Bold when hovered */
 }
+
+.nav-links a.active {
+  font-weight: bold; /* Always bold for the active link */
+  text-decoration: underline;
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {

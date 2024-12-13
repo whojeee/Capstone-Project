@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, NavLink } from 'react-router-dom'; // Import NavLink
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import Indonesia from './pages/Indonesia';
@@ -12,7 +12,7 @@ import SearchResults from './pages/SearchResults';
 import logo from './icons/logo.png';
 
 const App = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for toggling menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <Provider store={store}>
@@ -27,14 +27,32 @@ const App = () => {
               ☰
             </button>
             <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
-              <li><Link to="/home">Home</Link></li>
-              <li><Link to="/indonesia">Indonesia</Link></li>
-              <li><Link to="/programming">Programming</Link></li>
-              <li><Link to="/saved">Saved</Link></li>
+              {/* Use NavLink instead of Link */}
+              <li>
+                <NavLink to="/home" className={({ isActive }) => (isActive ? 'active' : '')}>
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/indonesia" className={({ isActive }) => (isActive ? 'active' : '')}>
+                  Indonesia
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/programming" className={({ isActive }) => (isActive ? 'active' : '')}>
+                  Programming
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/saved" className={({ isActive }) => (isActive ? 'active' : '')}>
+                  Saved
+                </NavLink>
+              </li>
             </ul>
           </nav>
 
           <Routes>
+            <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<Home />} />
             <Route path="/search/:query" element={<SearchResults />} />
             <Route path="/indonesia" element={<Indonesia />} />

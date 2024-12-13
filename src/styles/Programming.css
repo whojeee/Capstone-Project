@@ -71,11 +71,13 @@
   cursor: pointer;
   font-size: 20px;
   color: black;
+  transition: transform 0.3s ease;
 }
 
 .save-article:hover {
-  color: green;
+  transform: scale(1.2); /* Slight zoom effect */
 }
+
 
 /* Responsif */
 @media (max-width: 768px) {

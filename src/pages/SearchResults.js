@@ -13,14 +13,12 @@ const SearchResults = () => {
   const [searchTerm, setSearchTerm] = useState(query || '');
   const [loading, setLoading] = useState(false);
 
-  // Mendapatkan data pencarian saat query berubah
   useEffect(() => {
     if (query) {
       setLoading(true);
       axios
         .get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&api-key=WGtW2ZqJNTNKKgWkoGbAMmcwLslom8f8`)
         .then((response) => {
-          console.log(response.data.response.docs); // Debugging: log respons API
           setNews(response.data.response.docs);
           setLoading(false);
         })
@@ -31,7 +29,11 @@ const SearchResults = () => {
     }
   }, [query]);
 
-  // Fungsi untuk menangani pencarian
+  useEffect(() => {
+    const savedArticles = JSON.parse(localStorage.getItem('bookmarkedArticles')) || [];
+    setBookmarkedArticles(savedArticles.map((article) => article._id));
+  }, []);
+
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm) {
@@ -39,7 +41,6 @@ const SearchResults = () => {
     }
   };
 
-  // Fungsi untuk bookmark artikel
   const handleBookmarkArticle = (article) => {
     const savedArticles = JSON.parse(localStorage.getItem('bookmarkedArticles')) || [];
     const isAlreadySaved = savedArticles.some((savedArticle) => savedArticle._id === article._id);
@@ -59,31 +60,27 @@ const SearchResults = () => {
     if (!multimedia || multimedia.length === 0) {
       return '/images/placeholder.jpeg'; // Path ke file placeholder di folder public
     }
-    // Pilih gambar dengan resolusi tinggi
     const image = multimedia.find((item) => item.subtype === 'superJumbo' || item.subtype === 'xlarge' || item.subtype === 'large');
     if (image && image.url) {
       return `https://static01.nyt.com/${image.url}`;
     }
-    return '/images/placeholder.jpeg'; // Jika tidak ada gambar yang cocok
+    return '/images/placeholder.jpeg';
   };
-  
-  
 
   return (
     <div>
       <div className="top-header">
-  <h1 className="page-title">Search Results</h1>
-  <div className="search-bar">
-    <input
-      type="text"
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-      placeholder="Search news..."
-    />
-    <button onClick={handleSearch}>Search</button>
-  </div>
-</div>
-
+        <h1 className="page-title">Search Results</h1>
+        <div className="search-bar">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search news..."
+          />
+          <button onClick={handleSearch}>Search</button>
+        </div>
+      </div>
 
       <div className="search-results">
         {loading && <div>Loading...</div>}
@@ -91,19 +88,16 @@ const SearchResults = () => {
         {news.length > 0 && !loading ? (
           news.map((article) => (
             <div key={article._id} className="news-card">
-              {/* Menampilkan gambar jika ada */}
               {article.multimedia && (
                 <img
-                src={getImageUrl(article.multimedia)}
-                alt={article.headline.main}
-                className="news-image"
-                loading="lazy"
-                onError={(e) => {
-                  e.target.src = '/images/placeholder.jpeg'; // Gambar default
-                }}
-              />
-              
-              
+                  src={getImageUrl(article.multimedia)}
+                  alt={article.headline.main}
+                  className="news-image"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.src = '/images/placeholder.jpeg';
+                  }}
+                />
               )}
               <h2>{article.headline.main}</h2>
               <p>{article.abstract}</p>
@@ -121,6 +115,9 @@ const SearchResults = () => {
                   onClick={() => handleBookmarkArticle(article)}
                   style={{
                     color: bookmarkedArticles.includes(article._id) ? 'green' : 'black',
+                    fill: bookmarkedArticles.includes(article._id) ? 'green' : 'none',
+                    stroke: 'black',
+                    strokeWidth: '35px',
                     cursor: 'pointer',
                   }}
                 />

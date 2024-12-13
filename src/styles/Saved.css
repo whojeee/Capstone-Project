@@ -67,17 +67,18 @@
   background-color: #0056b3;
 }
 
-/* Tombol Save Article */
 .save-article {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 20px;
   color: black;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .save-article:hover {
-  color: red;
+  color: red; /* Highlight on hover */
+  transform: scale(1.2); /* Slight zoom effect */
 }
 
 /* Responsif */
