@@ -18,22 +18,36 @@ footer {
   width: 100%;
 }
 
-.search-bar {
+/* Top Header */
+.top-header {
   display: flex;
-  align-items: center; /* Pusatkan elemen secara vertikal */
-  margin-left: auto; /* Taruh search bar di sebelah kanan */
-  margin-right: 20px; /* Jarak dengan tepi navbar */
-  margin-top: 10px; /* Tambahkan jarak ke atas */
-  max-width: 400px; /* Batas lebar maksimal */
-  width: 100%; /* Buat fleksibel */
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align items to the left */
+  gap: 10px; /* Space between title and search bar */
+  margin-bottom: 20px; /* Add spacing below the header */
+  padding: 20px; /* Add padding around the header */
 }
 
+.page-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0; /* Remove default margin */
+  color: #333; /* Set title color */
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center; /* Vertically align items */
+  width: 100%; /* Full width */
+  max-width: 400px; /* Limit the width */
+}
 
 .search-bar input {
-  flex-grow: 1; /* Buat input mengisi ruang yang tersedia */
+  flex-grow: 1;
   padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 5px 0 0 5px; /* Round corner kiri */
+  border-radius: 5px 0 0 5px; /* Rounded corners on the left */
   font-size: 14px;
 }
 
@@ -42,15 +56,14 @@ footer {
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 0 5px 5px 0; /* Round corner kanan */
+  border-radius: 0 5px 5px 0; /* Rounded corners on the right */
   cursor: pointer;
   font-size: 14px;
 }
 
 .search-bar button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Darker blue on hover */
 }
-
 
 /* Loading & Error */
 .loading, .error {
@@ -59,12 +72,13 @@ footer {
   margin: 20px;
 }
 
+/* Search Results */
 .search-results {
-  margin: 50px; /* Jarak dari semua sisi */
+  margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px; /* Jarak antar kartu */
-  margin-bottom: 30px;
+  gap: 20px; /* Space between cards */
+  padding: 20px; /* Add padding around results */
 }
 
 .news-card {
@@ -79,22 +93,39 @@ footer {
   justify-content: space-between;
 }
 
-.news-image {
-  width: 100%; /* Gunakan lebar penuh dari elemen kartu */
-  height: 200px; /* Tetapkan tinggi tetap untuk konsistensi */
-  border-radius: 8px;
-  margin-bottom: 10px;
-  object-fit: cover; /* Pastikan gambar di-crop agar sesuai dengan dimensinya */
+.news-card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
 }
 
+.news-image {
+  width: 100%; /* Full width */
+  height: 200px; /* Fixed height */
+  border-radius: 8px;
+  margin-bottom: 10px;
+  object-fit: cover; /* Maintain aspect ratio */
+}
 
+.news-card h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.news-card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Buttons */
 .read-more {
   font-size: 12px;
   color: white;
-  text-decoration: none;
-  padding: 5px 10px;
   background-color: #333;
   border-radius: 5px;
+  padding: 5px 10px;
+  text-decoration: none;
   transition: background-color 0.3s;
 }
 
@@ -112,10 +143,32 @@ footer {
 
 .bookmark-icon {
   font-size: 1.5rem;
+  cursor: pointer;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .bookmark-icon:hover {
   transform: scale(1.2); /* Slight zoom effect */
   color: green; /* Color change on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-bar {
+    max-width: 100%; /* Stretch the search bar on smaller screens */
+  }
+
+  .search-results {
+    grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .search-results {
+    grid-template-columns: 1fr; /* Single column for small screens */
+  }
+
+  .search-bar {
+    max-width: 100%; /* Full width for smaller screens */
+  }
 }

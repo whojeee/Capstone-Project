@@ -67,8 +67,8 @@ const Home = () => {
   return (
     <div className="home-page">
       <div className="news-container">
+        {/* Search Bar and Title */}
         <div className="top-header">
-          <h1 className="page-title">Top Stories</h1>
           <div className="search-bar">
             <input
               type="text"
@@ -78,14 +78,16 @@ const Home = () => {
             />
             <button onClick={handleSearch}>Search</button>
           </div>
+          <h1 className="page-title">Top Stories</h1>
         </div>
-
+  
+        {/* News Cards */}
         <div className="news-cards">
           {topStories.map((article) => {
             const imageUrl = article.multimedia?.[0]?.url
               ? article.multimedia[0].url
               : `${process.env.PUBLIC_URL}/images/placeholder.jpeg`;
-
+  
             return (
               <div key={article.url} className="news-card">
                 <div className="card-image">
@@ -115,9 +117,9 @@ const Home = () => {
                     <FaBookmark
                       style={{
                         color: isSaved(article) ? 'green' : 'black',
-                        fill: isSaved(article) ? 'green' : 'none', // Outline by default, filled when saved
-                        stroke: 'black', // Ensures the outline is visible
-                        strokeWidth: '35px', // Optional for thicker outline
+                        fill: isSaved(article) ? 'green' : 'none',
+                        stroke: 'black',
+                        strokeWidth: '2px',
                         fontSize: '20px',
                       }}
                     />
@@ -130,6 +132,10 @@ const Home = () => {
       </div>
     </div>
   );
+  
+  
+  
+  
 };
 
 export default Home;

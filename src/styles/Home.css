@@ -1,83 +1,118 @@
-/* Styling untuk top header */
- .top-header {
+/* General container for all content */
+.news-container {
+  padding: 20px;
+}
+
+/* Align search bar and title to the left */
+.top-header {
   display: flex;
-  justify-content: space-between; /* Pisahkan judul dan search bar */
-  align-items: center; /* Pusatkan elemen secara vertikal */
-  margin: 20px 0; /* Tambahkan jarak vertikal */
-  padding: 0 20px; /* Tambahkan padding di kiri dan kanan */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align everything to the left */
+  gap: 10px; /* Add space between the search bar and title */
 }
 
- .page-title {
-  font-size: 35px;
+/* Search bar styles */
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Stretch to fit parent container */
+  max-width: 400px; /* Limit the width of the search bar */
+}
+
+.search-bar input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px; /* Rounded corners on the left */
+  font-size: 14px;
+}
+
+.search-bar button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0; /* Rounded corners on the right */
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Top Stories title */
+.page-title {
+  font-size: 32px;
   font-weight: bold;
-  margin: 0; /* Hilangkan margin default */
+  text-align: left; /* Ensure text aligns to the left */
+  margin: 0; /* Remove default margins */
+  color: #333;
 }
 
-
-.home-page .news-cards {
+/* News cards grid */
+.news-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 20px; 
-  width: 100%;
-  max-width: 98%; 
-  margin: 0 auto; 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between cards */
+  padding-top: 20px; /* Add space above the cards */
 }
 
-.home-page .news-card {
+/* Individual news card */
+.news-card {
   background: #fff;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  display: grid;
-  grid-template-rows: auto 1fr auto; 
-  gap: 10px; 
-  height: 100%; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.home-page .news-card .card-image img {
+.news-card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+}
+
+/* Card image */
+.card-image img {
   width: 100%;
   height: 180px;
   object-fit: cover;
   border-radius: 8px;
 }
 
-
-.home-page .news-card h2 {
+/* Card title */
+.news-card h2 {
   font-size: 18px;
-  margin: 10px 0;
   font-weight: bold;
-  text-align: left; 
+  margin: 10px 0;
 }
 
-
-.home-page .news-card p {
+/* Card description */
+.news-card p {
   font-size: 14px;
   color: #666;
-  margin: 0; 
   line-height: 1.5;
-  overflow: hidden; 
-  display: -webkit-box;
-  -webkit-line-clamp: 3; 
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
+  margin: 0;
 }
 
-.home-page .read-more-home {
+/* Read More button */
+.read-more {
   padding: 8px 16px;
   background-color: #007bff;
   color: white;
   border-radius: 4px;
   text-decoration: none;
   font-size: 14px;
-  text-align: center;
   transition: background-color 0.3s ease;
 }
 
-.home-page .read-more-home:hover {
+.read-more:hover {
   background-color: #0056b3;
 }
 
-.home-page .save-article {
+/* Bookmark button */
+.save-article {
   background: none;
   border: none;
   cursor: pointer;
@@ -85,18 +120,27 @@
   color: black;
 }
 
-.home-page .save-article:hover {
-  color: #007bff;
+.save-article:hover {
+  color: green;
 }
 
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .home-page .news-cards {
-    grid-template-columns: repeat(2, 1fr); 
+  .news-cards {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+  }
+
+  .search-bar {
+    width: 100%; /* Full width for smaller screens */
   }
 }
 
 @media (max-width: 480px) {
-  .home-page .news-cards {
-    grid-template-columns: 1fr; 
+  .news-cards {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+
+  .search-bar {
+    width: 100%; /* Full width for smaller screens */
   }
 }

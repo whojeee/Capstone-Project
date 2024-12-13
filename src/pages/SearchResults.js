@@ -68,9 +68,9 @@ const SearchResults = () => {
   };
 
   return (
-    <div>
+    <div className="search-results-page">
+      {/* Top Header */}
       <div className="top-header">
-        <h1 className="page-title">Search Results</h1>
         <div className="search-bar">
           <input
             type="text"
@@ -80,8 +80,11 @@ const SearchResults = () => {
           />
           <button onClick={handleSearch}>Search</button>
         </div>
-      </div>
+        <h1 className="page-title">Search Results for "{query || 'your search'}"</h1>
 
+      </div>
+  
+      {/* Search Results */}
       <div className="search-results">
         {loading && <div>Loading...</div>}
         {error && <div>{error}</div>}
@@ -130,6 +133,7 @@ const SearchResults = () => {
       </div>
     </div>
   );
+  
 };
 
 export default SearchResults;
