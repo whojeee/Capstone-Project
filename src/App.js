@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, Navigate, NavLink } from 'react-router-dom'; // Import NavLink
+import { BrowserRouter as Router, Route, Routes, Navigate, NavLink } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import Indonesia from './pages/Indonesia';
@@ -13,6 +13,10 @@ import logo from './icons/logo.png';
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleMenuClose = () => {
+    setIsMenuOpen(false); // Close the menu
+  };
 
   return (
     <Provider store={store}>
@@ -27,24 +31,39 @@ const App = () => {
               ☰
             </button>
             <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
-              {/* Use NavLink instead of Link */}
               <li>
-                <NavLink to="/home" className={({ isActive }) => (isActive ? 'active' : '')}>
+                <NavLink
+                  to="/home"
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                  onClick={handleMenuClose} // Close menu on click
+                >
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/indonesia" className={({ isActive }) => (isActive ? 'active' : '')}>
+                <NavLink
+                  to="/indonesia"
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                  onClick={handleMenuClose} // Close menu on click
+                >
                   Indonesia
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/programming" className={({ isActive }) => (isActive ? 'active' : '')}>
+                <NavLink
+                  to="/programming"
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                  onClick={handleMenuClose} // Close menu on click
+                >
                   Programming
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/saved" className={({ isActive }) => (isActive ? 'active' : '')}>
+                <NavLink
+                  to="/saved"
+                  className={({ isActive }) => (isActive ? 'active' : '')}
+                  onClick={handleMenuClose} // Close menu on click
+                >
                   Saved
                 </NavLink>
               </li>

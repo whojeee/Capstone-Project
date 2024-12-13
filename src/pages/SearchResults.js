@@ -34,10 +34,15 @@ const SearchResults = () => {
     setBookmarkedArticles(savedArticles.map((article) => article._id));
   }, []);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
+  const handleSearch = () => {
     if (searchTerm) {
       navigate(`/search/${searchTerm}`);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
     }
   };
 
@@ -58,7 +63,7 @@ const SearchResults = () => {
 
   const getImageUrl = (multimedia) => {
     if (!multimedia || multimedia.length === 0) {
-      return '/images/placeholder.jpeg'; // Path ke file placeholder di folder public
+      return '/images/placeholder.jpeg';
     }
     const image = multimedia.find((item) => item.subtype === 'superJumbo' || item.subtype === 'xlarge' || item.subtype === 'large');
     if (image && image.url) {
@@ -68,14 +73,14 @@ const SearchResults = () => {
   };
 
   return (
-    <div className="search-results-page">
-      {/* Top Header */}
+    <div>
       <div className="top-header">
         <div className="search-bar">
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleKeyPress} // Add key press handler here
             placeholder="Search news..."
           />
           <button onClick={handleSearch}>Search</button>
@@ -83,8 +88,7 @@ const SearchResults = () => {
         <h1 className="page-title">Search Results for "{query || 'your search'}"</h1>
 
       </div>
-  
-      {/* Search Results */}
+
       <div className="search-results">
         {loading && <div>Loading...</div>}
         {error && <div>{error}</div>}
@@ -120,7 +124,7 @@ const SearchResults = () => {
                     color: bookmarkedArticles.includes(article._id) ? 'green' : 'black',
                     fill: bookmarkedArticles.includes(article._id) ? 'green' : 'none',
                     stroke: 'black',
-                    strokeWidth: '35px',
+                    strokeWidth: '25px',
                     cursor: 'pointer',
                   }}
                 />
@@ -133,7 +137,6 @@ const SearchResults = () => {
       </div>
     </div>
   );
-  
 };
 
 export default SearchResults;

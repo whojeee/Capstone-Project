@@ -119,7 +119,7 @@ const Home = () => {
                         color: isSaved(article) ? 'green' : 'black',
                         fill: isSaved(article) ? 'green' : 'none',
                         stroke: 'black',
-                        strokeWidth: '2px',
+                        strokeWidth: '25px',
                         fontSize: '20px',
                       }}
                     />

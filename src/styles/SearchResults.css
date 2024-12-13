@@ -18,36 +18,33 @@ footer {
   width: 100%;
 }
 
-/* Top Header */
+/* Top Header (Search Bar and Title) */
 .top-header {
   display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: flex-start; /* Align items to the left */
-  gap: 10px; /* Space between title and search bar */
-  margin-bottom: 20px; /* Add spacing below the header */
-  padding: 20px; /* Add padding around the header */
+  flex-direction: column; /* Stack the search bar and title */
+  align-items: flex-start; /* Align everything to the left */
+  padding: 20px;
 }
 
 .page-title {
-  font-size: 32px;
+  font-size: 35px;
   font-weight: bold;
-  margin: 0; /* Remove default margin */
-  color: #333; /* Set title color */
+  margin-top: 20px; /* Space between search bar and title */
+  margin-bottom: 5px; /* Minimal space below the title */
 }
 
-/* Search Bar */
 .search-bar {
   display: flex;
-  align-items: center; /* Vertically align items */
-  width: 100%; /* Full width */
-  max-width: 400px; /* Limit the width */
+  align-items: center;
+  width: 300px; /* Match the width with Home */
+  margin-bottom: 0; /* Remove space below search bar */
 }
 
 .search-bar input {
   flex-grow: 1;
   padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 5px 0 0 5px; /* Rounded corners on the left */
+  border-radius: 5px 0 0 5px;
   font-size: 14px;
 }
 
@@ -56,38 +53,30 @@ footer {
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 0 5px 5px 0; /* Rounded corners on the right */
+  border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 14px;
 }
 
 .search-bar button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3;
 }
 
-/* Loading & Error */
-.loading, .error {
-  color: red;
-  font-size: 16px;
-  margin: 20px;
-}
-
-/* Search Results */
+/* Search Results Container */
 .search-results {
-  margin-top: 20px;
+  margin: 5px auto; /* Small gap between the title and cards, center align */
+  padding: 0 20px; /* Horizontal padding for spacing */
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
   gap: 20px; /* Space between cards */
-  padding: 20px; /* Add padding around results */
 }
 
+/* News Card Styles */
 .news-card {
   background-color: #fff;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -108,17 +97,16 @@ footer {
 .news-card h2 {
   font-size: 18px;
   font-weight: bold;
-  margin: 10px 0;
+  margin: 10px 0 5px;
 }
 
 .news-card p {
   font-size: 14px;
   color: #666;
   line-height: 1.5;
-  margin: 0;
+  margin: 5px 0;
 }
 
-/* Buttons */
 .read-more {
   font-size: 12px;
   color: white;

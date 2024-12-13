@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column; /* Stack elements vertically */
   align-items: flex-start; /* Align everything to the left */
-  gap: 10px; /* Add space between the search bar and title */
+  gap: 20px; /* Space between the search bar and the title */
 }
 
 /* Search bar styles */
@@ -48,6 +48,7 @@
   text-align: left; /* Ensure text aligns to the left */
   margin: 0; /* Remove default margins */
   color: #333;
+  padding-bottom: 5px; /* Small space below the title */
 }
 
 /* News cards grid */
@@ -55,7 +56,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
   gap: 20px; /* Space between cards */
-  padding-top: 20px; /* Add space above the cards */
+  margin-top: 0; /* No space between title and cards */
 }
 
 /* Individual news card */
@@ -124,23 +125,22 @@
   color: green;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .news-cards {
-    grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .search-bar {
-    width: 100%; /* Full width for smaller screens */
+    width: 100%; 
   }
 }
 
 @media (max-width: 480px) {
   .news-cards {
-    grid-template-columns: 1fr; /* Single column on small screens */
+    grid-template-columns: 1fr; 
   }
 
   .search-bar {
-    width: 100%; /* Full width for smaller screens */
+    width: 100%; 
   }
 }

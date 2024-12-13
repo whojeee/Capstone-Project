@@ -92,7 +92,7 @@ const Programming = () => {
                       color: isSaved(article) ? 'green' : 'black', // Icon color
                       fill: isSaved(article) ? 'green' : 'none', // Fill when saved
                       stroke: 'black', // Outline color
-                      strokeWidth: '35px', // Thick border
+                      strokeWidth: '25px', // Thick border
                       fontSize: '20px', // Icon size
                     }}
                   />

@@ -67,7 +67,7 @@ const Saved = () => {
                         color: 'white',
                         fill: 'red', // Default outlined style
                         stroke: 'white', // Dark red outline
-                        strokeWidth: '35px', // Thicker outline
+                        strokeWidth: '25px', // Thicker outline
                         fontSize: '20px',
                       }}
                     />
