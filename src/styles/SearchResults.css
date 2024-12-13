@@ -1,6 +1,14 @@
-/* Footer styles */
+/* General Styles */
+body, html {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 footer {
-  clear: both;  /* Make sure content above clears floated elements */
+  clear: both;
   padding: 20px;
   background-color: #333;
   color: white;
@@ -10,20 +18,6 @@ footer {
   width: 100%;
 }
 
-/* Optional: Ensures the footer stays at the bottom of the page */
-body, html {
-  height: 100%; /* Ensure the body and html take up full height */
-  margin: 0; /* Remove default margin */
-  display: flex;
-  flex-direction: column;
-}
-
-footer {
-  margin-top: auto; /* Push footer to the bottom of the page */
-}
-
-
-/* Styling untuk search bar */
 .search-bar {
   margin-top: 30px;
   display: flex;
@@ -32,11 +26,9 @@ footer {
   background-color: #fff;
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 10; /* Pastikan search bar tetap di atas konten */
-  position: relative;
+  z-index: 10;
 }
 
-/* Styling untuk input search */
 .search-bar input {
   width: 75%;
   padding: 10px;
@@ -45,11 +37,10 @@ footer {
   font-size: 16px;
 }
 
-/* Styling untuk tombol search */
 .search-bar button {
   padding: 10px 20px;
   background-color: #333;
-  color: #fff;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -60,7 +51,13 @@ footer {
   background-color: green;
 }
 
-/* Styling untuk hasil pencarian */
+/* Loading & Error */
+.loading, .error {
+  color: red;
+  font-size: 16px;
+  margin: 20px;
+}
+
 .search-results {
   margin-top: 20px;
   display: grid;
@@ -69,55 +66,54 @@ footer {
   margin-bottom: 30px;
 }
 
-/* Memastikan kartu berita memiliki tata letak yang benar */
-.search-results .news-card {
+.news-card {
   background-color: #fff;
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  position: relative;
   display: flex;
-  flex-direction: column; /* Agar elemen lainnya ditumpuk vertikal */
-min-height: 200px;}
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-/* Tombol Read More lebih kecil */
+.news-image {
+  width: 100%; /* Gunakan lebar penuh dari elemen kartu */
+  height: 200px; /* Tetapkan tinggi tetap untuk konsistensi */
+  border-radius: 8px;
+  margin-bottom: 10px;
+  object-fit: cover; /* Pastikan gambar di-crop agar sesuai dengan dimensinya */
+}
+
+
 .read-more {
-  font-size: 12px; /* Ukuran font lebih kecil */
+  font-size: 12px;
   color: white;
   text-decoration: none;
   padding: 5px 10px;
   background-color: #333;
   border-radius: 5px;
   transition: background-color 0.3s;
-  width: auto; /* Sesuai dengan panjang teks */
-  margin-right: 10px; /* Jarak antar tombol dan ikon */
-  display: inline-block;
 }
 
 .read-more:hover {
   background-color: #555;
 }
 
-/* Tombol dan ikon bookmark sejajar */
 .card-buttons {
   display: flex;
-  justify-content: space-between; /* Tombol Read More di kiri, ikon bookmark di kanan */
+  justify-content: space-between;
   align-items: center;
-  width: 100%; /* Memastikan ruang sepenuhnya digunakan */
-  margin-top: 10px; /* Jarak antara konten dan tombol */
+  width: 100%;
+  margin-top: 10px;
 }
 
-/* Ikon bookmark di kanan bawah */
 .bookmark-icon {
-  font-size: 20px; /* Ukuran ikon */
-  color: #333;
-  cursor: pointer;
+  font-size: 1.5rem;
   transition: color 0.3s ease;
 }
 
 .bookmark-icon:hover {
-  color: #ff7f50;
+  color: blue;
 }
-

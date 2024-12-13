@@ -1,126 +1,123 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../styles/Home.css'
-import { FaBookmark } from 'react-icons/fa'; // Using FaBookmark icon
-import { useNavigate } from 'react-router-dom'; // for navigation
+import '../styles/Home.css';
+import { FaBookmark } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [news, setNews] = useState([]);
   const [topStories, setTopStories] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [savedArticles, setSavedArticles] = useState([]);
-
-  const navigate = useNavigate(); // hook for navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setLoading(true);
-    axios.get('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=WGtW2ZqJNTNKKgWkoGbAMmcwLslom8f8')
-      .then(response => {
+    axios
+      .get('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=WGtW2ZqJNTNKKgWkoGbAMmcwLslom8f8')
+      .then((response) => {
+        console.log(response.data.results); // Debug respons API
         setTopStories(response.data.results);
-        setLoading(false);
       })
-      .catch(error => {
-        setError('Failed to load top stories');
-        setLoading(false);
-      });
+      .catch(() => console.error('Failed to load top stories'));
+  }, []);
+
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem('bookmarkedArticles')) || [];
+    setSavedArticles(saved);
   }, []);
 
   const handleSearch = () => {
     if (searchTerm) {
-      console.log('Navigating to: ', `/search/${searchTerm}`);
       navigate(`/search/${searchTerm}`);
     }
   };
 
-  const truncateText = (text, maxLength) => {
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength) + "...";
-    }
-    return text;
-  };
-
   const handleSave = (article) => {
-    // Save article only if it's not already saved
-    if (!isSaved(article)) {
-      setSavedArticles(prev => [...prev, article]);
+    const saved = JSON.parse(localStorage.getItem('bookmarkedArticles')) || [];
+    const isAlreadySaved = saved.some((savedArticle) =>
+      savedArticle._id === (article.url || article._id)
+    );
+
+    if (!isAlreadySaved) {
+      const standardizedArticle = {
+        _id: article.url || article._id,
+        headline: { main: article.title || article.headline?.main || 'No headline' },
+        abstract: article.abstract || 'No abstract available',
+        web_url: article.url || article.web_url,
+        image_url: article.multimedia?.[0]?.url || '', // Use image if available
+      };
+
+      const updatedArticles = [...saved, standardizedArticle];
+      localStorage.setItem('bookmarkedArticles', JSON.stringify(updatedArticles));
+      setSavedArticles(updatedArticles);
     }
   };
 
   const isSaved = (article) => {
-    return savedArticles.some(saved => saved._id === article._id);
+    const saved = JSON.parse(localStorage.getItem('bookmarkedArticles')) || [];
+    return saved.some((savedArticle) =>
+      savedArticle._id === (article.url || article._id)
+    );
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
-
   return (
-    <div className='home-page'>
-    <div className="news-container">
-      <div className="search-bar">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search news..."
-        />
-        <button onClick={handleSearch}>Search</button>
-      </div>
+    <div className="home-page">
+      <div className="news-container">
+        <div className="search-bar">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search news..."
+          />
+          <button onClick={handleSearch}>Search</button>
+        </div>
 
-      <h1>{news.length > 0 ? 'Search Results' : 'Top Stories'}</h1>
-      <div className="news-cards">
-        {news.length > 0 ? (
-          news.map((article) => (
-            <div key={article._id} className="news-card">
-              <h2>{article.headline.main}</h2>
-              <p>{truncateText(article.abstract, 150)}</p>
-              <div className="card-buttons">
-                <a href={article.web_url} target="_blank" rel="noopener noreferrer" className="read-more">
-                  Read More
-                </a>
-                <button
-                  className="save-article"
-                  onClick={() => handleSave(article)}
-                  disabled={isSaved(article)}
-                >
-                  <FaBookmark
-                    style={{
-                      color: isSaved(article) ? 'black' : 'white', // Color change when saved
-                      fontSize: '20px',
+        <h1>Top Stories</h1>
+        <div className="news-cards">
+          {topStories.map((article) => {
+            const imageUrl = article.multimedia?.[0]?.url
+              ? article.multimedia[0].url
+              : `${process.env.PUBLIC_URL}/images/placeholder.jpeg`;
+
+            return (
+              <div key={article.url} className="news-card">
+                <div className="card-image">
+                  <img
+                    src={imageUrl}
+                    alt={article.title || 'Placeholder'}
+                    onError={(e) => {
+                      e.target.src = `${process.env.PUBLIC_URL}/images/placeholder.jpeg`;
                     }}
                   />
-                </button>
+                </div>
+                <h2>{article.title}</h2>
+                <p>{article.abstract}</p>
+                <div className="card-buttons">
+                  <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="read-more"
+                  >
+                    Read More
+                  </a>
+                  <button
+                    className="save-article"
+                    onClick={() => handleSave(article)}
+                  >
+                    <FaBookmark
+                      style={{
+                        color: isSaved(article) ? 'green' : 'black',
+                        fontSize: '20px',
+                      }}
+                    />
+                  </button>
+                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          topStories.map((article) => (
-            <div key={article.url} className="news-card">
-              <h2>{article.title}</h2>
-              <p>{truncateText(article.abstract, 150)}</p>
-              <div className="card-buttons">
-                <a href={article.url} target="_blank" rel="noopener noreferrer" className="read-more-home">
-                  Read More
-                </a>
-                <button
-                  className="save-article"
-                  onClick={() => handleSave(article)}
-                  disabled={isSaved(article)}
-                >
-                  <FaBookmark
-                    style={{
-                      color: isSaved(article) ? 'black' : 'white', // Color change when saved
-                      fontSize: '20px',
-                    }}
-                  />
-                </button>
-              </div>
-            </div>
-          ))
-        )}
+            );
+          })}
+        </div>
       </div>
-    </div>
     </div>
   );
 };

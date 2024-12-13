@@ -1,77 +1,92 @@
-/* Gaya spesifik untuk Home */
-.home-page .news-container {
-  padding: 20px;
+/* Grid container untuk news cards */
+.home-page .news-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 kolom per baris */
+  gap: 20px; /* Jarak antar kartu */
+  width: 100%;
+  max-width: 98%; /* Hampir penuh layar, sejajar dengan tulisan Top Stories */
+  margin: 0 auto; /* Tetap berada di tengah */
 }
 
+/* Card default */
 .home-page .news-card {
-  border: 1px solid #ddd;
-  margin: 10px;
-  padding: 15px;
-  border-radius: 5px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Struktur: gambar, konten (deskripsi), tombol */
+  gap: 10px; /* Jarak antar elemen dalam kartu */
+  height: 100%; /* Tinggi seragam untuk semua kartu */
 }
 
-.home-page .card-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+/* Gambar card */
+.home-page .news-card .card-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
+/* Judul card */
+.home-page .news-card h2 {
+  font-size: 18px;
+  margin: 10px 0;
+  font-weight: bold;
+  text-align: left; /* Konsistensi penempatan */
+}
+
+/* Deskripsi card */
+.home-page .news-card p {
+  font-size: 14px;
+  color: #666;
+  margin: 0; /* Hapus margin untuk konsistensi */
+  line-height: 1.5;
+  overflow: hidden; /* Jika teks terlalu panjang */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Batasi hingga 3 baris */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+/* Tombol baca lebih lanjut */
 .home-page .read-more-home {
-  background-color: #333;
+  padding: 8px 16px;
+  background-color: #007bff;
   color: white;
-  padding: 10px 15px;
+  border-radius: 4px;
   text-decoration: none;
-  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  transition: background-color 0.3s ease;
 }
 
+.home-page .read-more-home:hover {
+  background-color: #0056b3;
+}
+
+/* Simpan artikel */
 .home-page .save-article {
-  background-color: transparent;
+  background: none;
   border: none;
   cursor: pointer;
-  padding: 5px;
-  transition: transform 0.3s;
+  font-size: 20px;
+  color: black;
 }
 
 .home-page .save-article:hover {
-  transform: scale(1.2);
+  color: #007bff;
 }
 
-/* Search Bar */
-.search-bar {
-  position: relative; /* Keeps it relative to the page */
-  width: 100%; /* Makes the search bar span across the full width of the page */
-  padding: 10px 0; /* Vertical padding */
-  box-sizing: border-box; /* Ensures padding doesn't affect the width */
+/* Responsif */
+@media (max-width: 768px) {
+  .home-page .news-cards {
+    grid-template-columns: repeat(2, 1fr); /* 2 card per baris */
+  }
 }
 
-.search-bar input {
-  width: 100%; /* The input takes up the full width of the search bar */
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  box-sizing: border-box; /* Prevents padding from affecting width */
+@media (max-width: 480px) {
+  .home-page .news-cards {
+    grid-template-columns: 1fr; /* 1 card per baris */
+  }
 }
-
-.search-bar button {
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-left: 10px;
-}
-
-.search-bar button:hover {
-  background-color: #444;
-}
-
-/* Ensure there's no extra margin/padding around the search bar */
-.home-page .news-container {
-  margin-top: 0px; /* Adjust for search bar and navbar */
-}
-
-
-

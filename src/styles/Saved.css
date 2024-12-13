@@ -1,14 +1,19 @@
-.news-container {
+.saved-page {
   padding: 20px;
   font-family: Arial, sans-serif;
 }
 
+/* Grid container */
 .news-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsif */
+  grid-template-columns: repeat(4, 1fr); /* 4 kolom per baris */
   gap: 20px;
+  width: 100%;
+  max-width: 98%; /* Hampir penuh layar, sejajar dengan heading */
+  margin: 0 auto; /* Pusatkan */
 }
 
+/* Card default */
 .news-card {
   background: #fff;
   padding: 20px;
@@ -24,6 +29,7 @@
   transform: translateY(-5px); /* Efek hover */
 }
 
+/* Gambar pada card */
 .card-image img {
   width: 100%;
   height: 180px;
@@ -31,26 +37,22 @@
   border-radius: 8px;
 }
 
+/* Judul */
 .news-card h2 {
   font-size: 18px;
   margin: 10px 0;
   font-weight: bold;
 }
 
+/* Deskripsi */
 .news-card p {
   font-size: 14px;
   color: #666;
   margin-bottom: 10px;
 }
 
-.card-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.read-more {
+/* Tombol Read More */
+.read-more-home {
   padding: 8px 16px;
   background-color: #007bff;
   color: white;
@@ -61,10 +63,11 @@
   text-align: center;
 }
 
-.read-more:hover {
+.read-more-home:hover {
   background-color: #0056b3;
 }
 
+/* Tombol Save Article */
 .save-article {
   background: none;
   border: none;
@@ -74,7 +77,7 @@
 }
 
 .save-article:hover {
-  color: green;
+  color: red;
 }
 
 /* Responsif */

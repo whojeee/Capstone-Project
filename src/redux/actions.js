@@ -8,6 +8,8 @@ export const setIndonesiaNews = (news) => ({
   payload: news,
 });
 
+
+
 export const setLoading = (loading) => ({
   type: 'SET_LOADING',
   payload: loading,
