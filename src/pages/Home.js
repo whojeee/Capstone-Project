@@ -30,6 +30,13 @@ const Home = () => {
     }
   };
 
+  // Handle Enter key press for search
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   const handleSave = (article) => {
     const saved = JSON.parse(localStorage.getItem('bookmarkedArticles')) || [];
     const isAlreadySaved = saved.some(
@@ -74,6 +81,7 @@ const Home = () => {
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyPress={handleKeyPress} 
               placeholder="Search news..."
             />
             <button onClick={handleSearch}>Search</button>
@@ -132,10 +140,6 @@ const Home = () => {
       </div>
     </div>
   );
-  
-  
-  
-  
 };
 
 export default Home;
