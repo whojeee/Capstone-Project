@@ -126,7 +126,7 @@ const Home = () => {
                   key={article.id || index}
                   className="trending-card"
                   onClick={() => window.open(article.url || article.link, '_blank')}
-                  style={{ cursor: 'pointer' }} // Ensure pointer cursor
+                  style={{ cursor: 'pointer' }} 
                 >
                   <div className="trending-image-container">
                     <img
@@ -178,8 +178,8 @@ const Home = () => {
                   <button className="save-article" onClick={() => handleSave(article)}>
                     <FaBookmark
                       style={{
-                        color: isSaved(article) ? 'green' : 'black',
-                        fill: isSaved(article) ? 'green' : 'none',
+                        color: isSaved(article) ? 'black' : 'black',
+                        fill: isSaved(article) ? 'black' : 'none',
                         stroke: 'black',
                         strokeWidth: '25px',
                         fontSize: '20px',

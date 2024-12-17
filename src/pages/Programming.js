@@ -21,7 +21,7 @@ const Programming = () => {
       axios
         .get('https://api.nytimes.com/svc/search/v2/articlesearch.json?q=programming&api-key=WGtW2ZqJNTNKKgWkoGbAMmcwLslom8f8')
         .then((response) => {
-          console.log(response.data.response.docs); // Debug data API
+          console.log(response.data.response.docs);
           dispatch(setProgrammingNews(response.data.response.docs));
           dispatch(setLoading(false));
         })
@@ -89,11 +89,11 @@ const Programming = () => {
                 <button className="save-article" onClick={() => handleSave(article)}>
                   <FaBookmark
                     style={{
-                      color: isSaved(article) ? 'green' : 'black', // Icon color
-                      fill: isSaved(article) ? 'green' : 'none', // Fill when saved
-                      stroke: 'black', // Outline color
-                      strokeWidth: '25px', // Thick border
-                      fontSize: '20px', // Icon size
+                      color: isSaved(article) ? 'black' : 'black', 
+                      fill: isSaved(article) ? 'black' : 'none', 
+                      stroke: 'black', 
+                      strokeWidth: '25px', 
+                      fontSize: '20px', 
                     }}
                   />
                 </button>

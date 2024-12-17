@@ -8,7 +8,7 @@ const Saved = () => {
   useEffect(() => {
     try {
       const articles = JSON.parse(localStorage.getItem('bookmarkedArticles')) || [];
-      console.log('Saved articles:', articles); // Debugging data
+      console.log('Saved articles:', articles); 
       const validArticles = articles.filter((article) => article && article._id && article.headline?.main);
       setSavedArticles(validArticles);
     } catch (error) {
@@ -19,8 +19,8 @@ const Saved = () => {
 
   const handleRemoveBookmark = (articleId) => {
     const updatedArticles = savedArticles.filter((article) => article._id !== articleId);
-    setSavedArticles(updatedArticles); // Update state
-    localStorage.setItem('bookmarkedArticles', JSON.stringify(updatedArticles)); // Update localStorage
+    setSavedArticles(updatedArticles); 
+    localStorage.setItem('bookmarkedArticles', JSON.stringify(updatedArticles)); 
   };
 
   return (
@@ -31,10 +31,10 @@ const Saved = () => {
           savedArticles.map((article) => {
             const imageUrl =
               article.multimedia && article.multimedia.length > 0 && article.multimedia[0].url
-                ? `https://static01.nyt.com/${article.multimedia[0].url}` // URL dari multimedia
+                ? `https://static01.nyt.com/${article.multimedia[0].url}` 
                 : article.image_url && article.image_url.trim() !== ""
-                ? article.image_url // URL gambar tersimpan
-                : `${process.env.PUBLIC_URL}/images/placeholder.jpeg`; // Placeholder default
+                ? article.image_url 
+                : `${process.env.PUBLIC_URL}/images/placeholder.jpeg`; 
 
             return (
               <div key={article._id} className="news-card">
@@ -43,7 +43,7 @@ const Saved = () => {
                     src={imageUrl}
                     alt={article.headline?.main || "Placeholder"}
                     onError={(e) => {
-                      e.target.src = `${process.env.PUBLIC_URL}/images/placeholder.jpeg`; // Placeholder jika gagal
+                      e.target.src = `${process.env.PUBLIC_URL}/images/placeholder.jpeg`; 
                     }}
                   />
                 </div>
@@ -65,9 +65,9 @@ const Saved = () => {
                     <FaBookmark
                       style={{
                         color: 'white',
-                        fill: 'red', // Default outlined style
-                        stroke: 'white', // Dark red outline
-                        strokeWidth: '25px', // Thicker outline
+                        fill: 'black', 
+                        stroke: 'white', 
+                        strokeWidth: '25px', 
                         fontSize: '20px',
                       }}
                     />

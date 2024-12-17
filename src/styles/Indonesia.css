@@ -5,20 +5,20 @@
 
 .news-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsif grid */
-  gap: 20px; /* Jarak antar kartu */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 20px; 
 }
 
 .news-card {
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
-  overflow: hidden; /* Menghindari elemen yang melampaui batas kartu */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Bayangan ringan untuk kartu */
+  overflow: hidden; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
   display: grid;
-  grid-template-rows: auto 1fr auto; /* Struktur: gambar, deskripsi, tombol */
+  grid-template-rows: auto 1fr auto; 
   gap: 10px;
-  height: 100%; /* Semua kartu memiliki tinggi yang sama */
+  height: 100%; 
 }
 
 .news-image {
@@ -26,33 +26,31 @@
   height: 200px;
   object-fit: cover;
   border-radius: 10px;
-  background-color: #f0f0f0; /* Tambahkan latar belakang */
+  background-color: #f0f0f0; 
 }
-
-
 
 .news-card h2 {
   font-size: 1.2rem;
   font-weight: bold;
   color: #333;
-  margin: 0; /* Hapus margin default */
-  padding: 10px; /* Tambahkan padding */
-  text-align: left; /* Rata kiri */
+  margin: 0; 
+  padding: 10px; 
+  text-align: left; 
 }
 
 .news-card p {
   font-size: 1rem;
   color: #666;
-  margin: 0; /* Hapus margin default */
-  padding: 10px; /* Tambahkan padding */
+  margin: 0; 
+  padding: 10px; 
   text-align: justify;
   line-height: 1.5;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Batasi hingga 3 baris */
+  -webkit-line-clamp: 3; 
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
-  height: 80px; /* Tetapkan tinggi tetap untuk deskripsi */
+  height: 80px; 
 }
 
 .card-buttons {
@@ -60,7 +58,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  padding: 10px; /* Tambahkan padding untuk tombol */
+  padding: 10px; 
 }
 
 .read-more {
@@ -73,13 +71,13 @@
   font-weight: bold;
   text-align: center;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
-  flex-grow: 1; /* Agar tombol memenuhi ruang */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  flex-grow: 1; 
 }
 
 .read-more:hover {
   background-color: #0056b3;
-  transform: scale(1.05); /* Efek hover */
+  transform: scale(1.05); 
 }
 
 .bookmark-button {
@@ -91,11 +89,9 @@
 }
 
 .bookmark-button:hover {
-  transform: scale(1.2); /* Slight zoom effect on hover */
+  transform: scale(1.2); 
 }
 
-
-/* Placeholder jika gambar tidak ada */
 .no-image {
   width: 100%;
   height: 200px;
@@ -109,7 +105,6 @@
   text-align: center;
 }
 
-/* Responsif */
 @media (max-width: 768px) {
   .news-card {
     margin-bottom: 20px;

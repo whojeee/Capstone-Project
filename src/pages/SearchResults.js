@@ -80,7 +80,7 @@ const SearchResults = () => {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyDown={handleKeyPress} // Add key press handler here
+            onKeyDown={handleKeyPress} 
             placeholder="Search news..."
           />
           <button onClick={handleSearch}>Search</button>
@@ -121,8 +121,8 @@ const SearchResults = () => {
                   className="bookmark-icon"
                   onClick={() => handleBookmarkArticle(article)}
                   style={{
-                    color: bookmarkedArticles.includes(article._id) ? 'green' : 'black',
-                    fill: bookmarkedArticles.includes(article._id) ? 'green' : 'none',
+                    color: bookmarkedArticles.includes(article._id) ? 'black' : 'black',
+                    fill: bookmarkedArticles.includes(article._id) ? 'black' : 'none',
                     stroke: 'black',
                     strokeWidth: '25px',
                     cursor: 'pointer',

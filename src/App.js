@@ -15,7 +15,7 @@ const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuClose = () => {
-    setIsMenuOpen(false); // Close the menu
+    setIsMenuOpen(false); 
   };
 
   return (
@@ -35,7 +35,7 @@ const App = () => {
                 <NavLink
                   to="/home"
                   className={({ isActive }) => (isActive ? 'active' : '')}
-                  onClick={handleMenuClose} // Close menu on click
+                  onClick={handleMenuClose} 
                 >
                   Home
                 </NavLink>
@@ -44,7 +44,7 @@ const App = () => {
                 <NavLink
                   to="/indonesia"
                   className={({ isActive }) => (isActive ? 'active' : '')}
-                  onClick={handleMenuClose} // Close menu on click
+                  onClick={handleMenuClose} 
                 >
                   Indonesia
                 </NavLink>
@@ -53,7 +53,7 @@ const App = () => {
                 <NavLink
                   to="/programming"
                   className={({ isActive }) => (isActive ? 'active' : '')}
-                  onClick={handleMenuClose} // Close menu on click
+                  onClick={handleMenuClose} 
                 >
                   Programming
                 </NavLink>
@@ -62,7 +62,7 @@ const App = () => {
                 <NavLink
                   to="/saved"
                   className={({ isActive }) => (isActive ? 'active' : '')}
-                  onClick={handleMenuClose} // Close menu on click
+                  onClick={handleMenuClose} 
                 >
                   Saved
                 </NavLink>

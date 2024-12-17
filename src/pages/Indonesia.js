@@ -101,8 +101,8 @@ const Indonesia = () => {
                 >
                   <FaBookmark
                     style={{
-                      color: isSaved(article) ? 'green' : 'black',
-                      fill: isSaved(article) ? 'green' : 'none',
+                      color: isSaved(article) ? 'black' : 'black',
+                      fill: isSaved(article) ? 'black' : 'none',
                       stroke: 'black',
                       strokeWidth: '25px',
                       fontSize: '20px',

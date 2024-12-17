@@ -5,7 +5,7 @@
 
 .news-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsif */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
   gap: 20px;
 }
 
@@ -21,13 +21,13 @@
 }
 
 .news-card:hover {
-  transform: translateY(-5px); /* Efek hover */
+  transform: translateY(-5px); 
 }
 
 .card-image img {
   width: 100%;
   height: 180px;
-  object-fit: cover; /* Memastikan gambar proporsional */
+  object-fit: cover; 
   border-radius: 8px;
 }
 
@@ -57,7 +57,7 @@
   border-radius: 4px;
   text-decoration: none;
   font-size: 14px;
-  flex-grow: 1; /* Tombol akan memenuhi ruang */
+  flex-grow: 1; 
   text-align: center;
 }
 
@@ -75,19 +75,18 @@
 }
 
 .save-article:hover {
-  transform: scale(1.2); /* Slight zoom effect */
+  transform: scale(1.2); 
 }
 
 
-/* Responsif */
 @media (max-width: 768px) {
   .news-cards {
-    grid-template-columns: repeat(2, 1fr); /* 2 kolom pada layar kecil */
+    grid-template-columns: repeat(2, 1fr); 
   }
 }
 
 @media (max-width: 480px) {
   .news-cards {
-    grid-template-columns: 1fr; /* 1 kolom pada layar sangat kecil */
+    grid-template-columns: 1fr; 
   }
 }

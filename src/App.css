@@ -1,19 +1,17 @@
-/* Global Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif; /* Modern font */
+  font-family: 'Poppins', sans-serif; 
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Full viewport height */
-  padding-top: 60px; /* Space for fixed navbar */
+  min-height: 100vh; 
+  padding-top: 60px; 
 }
 
-/* Navbar */
 .navbar {
   background-color: #333;
   padding: 10px 20px;
@@ -32,7 +30,6 @@
   width: 120px;
 }
 
-/* Menu Toggle Button */
 .menu-toggle {
   display: none;
   background: none;
@@ -44,7 +41,6 @@
   right: 20px;
 }
 
-/* Nav Links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -61,23 +57,21 @@
 }
 
 .nav-links a:hover {
-  font-weight: bold; /* Bold when hovered */
+  font-weight: bold; 
 }
 
 .nav-links a.active {
-  font-weight: bold; /* Always bold for the active link */
+  font-weight: bold; 
   text-decoration: underline;
 }
 
-
-/* Responsive Styles */
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block; /* Show hamburger button */
+    display: block; 
   }
 
   .nav-links {
-    display: none; /* Hide menu by default */
+    display: none; 
     flex-direction: column;
     gap: 10px;
     background-color: #333;
@@ -89,7 +83,7 @@
   }
 
   .nav-links.open {
-    display: flex; /* Show menu when toggled */
+    display: flex; 
   }
 
   .nav-links a {
@@ -99,7 +93,6 @@
   }
 }
 
-/* Footer */
 .footer {
   margin-top: auto;
   text-align: center;
